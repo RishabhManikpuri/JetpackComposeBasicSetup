@@ -1,4 +1,4 @@
-package com.example.jetpackcomposebasicsetup.ui.theme
+package com.rishabh.jetpackcomposebasicsetup.ui.theme
 
 import android.app.Activity
 import android.os.Build

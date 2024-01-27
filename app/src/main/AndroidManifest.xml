@@ -13,13 +13,13 @@
         android:theme="@style/Theme.JetpackComposeBasicSetup"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.rishabh.jetpackcomposebasicsetup.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.JetpackComposeBasicSetup">
+            android:theme="@style/Theme.JetpackComposeBasicSetup"
+            tools:ignore="RedundantLabel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
