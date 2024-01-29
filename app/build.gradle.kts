@@ -2,7 +2,10 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
-//    id("com.google.gms.google-services")
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -23,6 +26,11 @@ android {
     }
 
     buildTypes {
+
+        debug {
+            isMinifyEnabled = false
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -49,6 +57,11 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    // Allow references to generated code
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -61,7 +74,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
-//    implementation(libs.firebase.analytics)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -69,4 +82,40 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    // mockk
+    testImplementation(libs.mockk)
+
+    // DI
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    // firebase
+    implementation(libs.firebase.analytics)
+
+    // image caching
+    implementation(libs.coil)
+
+    // room db
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.runtime)
+    // To use Kotlin Symbol Processing (kapt)
+    ksp(libs.room.compiler)
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.room.ktx)
+    // optional - Test helpers
+    testImplementation(libs.room.testing)
+
+    //Datastore
+    implementation(libs.data.store)
+
+
+
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
+    
+    //network interceptor
+    implementation(libs.okhttp.logging)
+
 }
